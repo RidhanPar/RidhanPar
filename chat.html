@@ -1,43 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Chat - Your Platform Name</title>
+  <title>Chat - Mature Minds</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
   <header>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="programs.html">Programs</a></li>
-        <li><a href="support.html">Support</a></li>
-        <li><a href="#">Chat</a></li>
-        <li><a href="staff.html">Staff</a></li>
-      </ul>
-    </nav>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="support.html">Support</a></li>
+          <li><a href="chat.html">Chat</a></li>
+          <li><a href="staff.html">Staff</a></li>
+        </ul>
+      </nav>
   </header>
 
-  <section class="main-content">
-    <h1>Welcome to the Chat Room</h1>
-    <div class="chat-box">
-      <div class="message">
-        <span class="user">User1:</span> Hello! Is anyone here?
-      </div>
-      <div class="message">
-        <span class="user">User2:</span> Yes, I'm here. How can I assist you?
-      </div>
-      <!-- Add more chat messages as the conversation progresses -->
+  <div class="chat-container">
+    <div class="chat-header">
+      <h2>Welcome to the Chat</h2>
     </div>
 
-    <!-- Message input area -->
-    <div class="message-input">
-      <input type="text" placeholder="Type your message">
-      <button>Send</button>
+    <div class="chat-messages" id="chat-messages">
+      <!-- Chat messages will appear here -->
     </div>
-  </section>
 
-  <footer>
-    <p>&copy; 2023 Your Platform Name. All rights reserved.</p>
-  </footer>
+    <input type="text" class="chat-input" id="message-input" placeholder="Type your message..." autofocus>
+    <button class="send-button" onclick="sendMessage()">Send</button>
+  </div>
+
+  <script>
+    function sendMessage() {
+      var messageInput = document.getElementById('message-input');
+      var message = messageInput.value;
+      if (message.trim() !== '') {
+        var chatMessages = document.getElementById('chat-messages');
+        var messageDiv = document.createElement('div');
+        messageDiv.classList.add('chat-message');
+        messageDiv.textContent = message;
+        chatMessages.appendChild(messageDiv);
+        messageInput.value = '';
+        chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
+      }
+    }
+
+    // Simulate a received message (for demonstration purposes)
+    function receiveMessage() {
+      var chatMessages = document.getElementById('chat-messages');
+      var messageDiv = document.createElement('div');
+      messageDiv.classList.add('chat-message');
+      messageDiv.textContent = 'This is a received message.';
+      chatMessages.appendChild(messageDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
+    }
+
+    // Simulate receiving a message after 3 seconds (for demonstration purposes)
+    setTimeout(receiveMessage, 3000);
+  </script>
 </body>
 </html>
